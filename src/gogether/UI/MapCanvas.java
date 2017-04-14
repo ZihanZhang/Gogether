@@ -34,5 +34,16 @@ public class MapCanvas extends JPanel{
 		
 		g2d.setColor(Color.black);
 		g2d.drawLine(0, 0, size.width, size.height);
+		
+		g2d.setColor(Color.BLACK);
+		g2d.fillRect(250, 150, 250, 100);
+		
+		g2d.setColor(Color.RED);
+		g2d.fillOval(80, 50, 5, 5);
+		g2d.drawString("Departure", 85, 50);
+		
+		g2d.setColor(Color.RED);
+		g2d.fillOval(700, 370, 5, 5);
+		g2d.drawString("Destination", 705, 375);
 	}
 }
