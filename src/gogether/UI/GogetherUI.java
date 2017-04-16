@@ -3,8 +3,10 @@ package gogether.UI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
@@ -19,11 +21,13 @@ public class GogetherUI {
 	
 	JFrame mainFrame = null;
 	
-	JPanel mainPanel = null;
+	MapCanvas mainPanel = null;
 	
 	JPanel buttonPanel = null;
 	
 	JButton startButton = null;
+	
+	private Timer timer = new Timer();
 	
 	public GogetherUI() {
 		mainFrame = new JFrame();
@@ -48,6 +52,14 @@ public class GogetherUI {
 		DesignGridLayout pLayout = new DesignGridLayout(buttonPanel);
 		pLayout.row().center().add(startButton);
 		buttonPanel.setBackground(Color.gray);
+		
+		startButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				timer.schedule(new RouteDrawer(mainPanel), 0L,1000L);			
+			}			
+		});
+		
 		return buttonPanel;
 	}
 	

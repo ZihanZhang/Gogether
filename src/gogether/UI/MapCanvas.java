@@ -20,6 +20,8 @@ import net.java.dev.designgridlayout.DesignGridLayout;
 
 public class MapCanvas extends JPanel{
 	
+	int startX, startY, endX, endY;
+	
 	@Override
 	public void paint(Graphics g) {
 		drawCanvas(g);
