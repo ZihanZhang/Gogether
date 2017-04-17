@@ -9,25 +9,32 @@ import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
+import gogether.Logic.Member;
+
 public class RouteDrawer extends TimerTask{
+	Member m = new Member();
+	
 	MapCanvas mapCanvas;
-	int oldx = 80, oldy = 50, newx, newy;
 	
 	public RouteDrawer(MapCanvas mapCanvas) {
 		this.mapCanvas = mapCanvas;
+		m.curx = 80;
+		m.cury = 50;
 	}
 	
 	public void draw() {
-		if (newx == 700 && newy == 370) {
-			cancel();
-		}
+//		if (newx == 700 && newy == 370) {
+//			cancel();
+//		}
 		Graphics2D g2d=(Graphics2D) mapCanvas.getGraphics();
 		g2d.setColor(Color.BLACK);
-		newx = oldx + 62;
-		newy = oldy + 32;
-		g2d.drawLine(oldx, oldy, newx, newy);
-		oldx = newx;
-		oldy = newy;
+		m.w = 1;
+		m.c1 = 1;
+		m.c2 = 1;
+		m.setNewLocation();
+		System.out.println(m.curx +" " + m.cury);
+		g2d.drawLine(m.curx, m.cury, m.newx, m.newy);
+		m.moveToNewLocation();
 		mapCanvas.validate();
 	}
 
