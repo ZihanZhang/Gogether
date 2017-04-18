@@ -20,6 +20,7 @@ public class RouteDrawer extends TimerTask{
 		this.mapCanvas = mapCanvas;
 		m.curx = 80;
 		m.cury = 50;
+		m.fa = mapCanvas.fa;
 	}
 	
 	public void draw() {
@@ -31,8 +32,17 @@ public class RouteDrawer extends TimerTask{
 		m.w = 1;
 		m.c1 = 1;
 		m.c2 = 1;
+		m.gbestx = 700;
+		m.gbesty = 370;
+		m.oldx = m.curx;
+		m.oldy = m.cury;
+		m.setPbestx();
+		m.setPbesty();
+		m.setGbestx();
+		m.setGbesty();
+		m.setNextLocation();
 		m.setNewLocation();
-		System.out.println(m.curx +" " + m.cury);
+//		System.out.println(mapCanvas.fa.leftupx + " " + mapCanvas.fa.leftupy + " " + mapCanvas.fa.rightdownx + " " + mapCanvas.fa.rightdowny);
 		g2d.drawLine(m.curx, m.cury, m.newx, m.newy);
 		m.moveToNewLocation();
 		mapCanvas.validate();

@@ -56,7 +56,7 @@ public class GogetherUI {
 		startButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				timer.schedule(new RouteDrawer(mainPanel), 0L,1000L);			
+				timer.schedule(new RouteDrawer(mainPanel), 0L,100L);			
 			}			
 		});
 		

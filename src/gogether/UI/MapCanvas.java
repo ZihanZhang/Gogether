@@ -16,11 +16,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import gogether.Logic.ComfortArea;
+import gogether.Logic.FastArea;
 import net.java.dev.designgridlayout.DesignGridLayout;
 
 public class MapCanvas extends JPanel{
-	
-	int startX, startY, endX, endY;
+
+	FastArea fa = new FastArea();
+	ComfortArea ca = new ComfortArea();
 	
 	@Override
 	public void paint(Graphics g) {
@@ -34,11 +37,25 @@ public class MapCanvas extends JPanel{
 		g2d.setColor(Color.GREEN);
 		g2d.fillRect(0, 0,size.width, size.height);
 		
-		g2d.setColor(Color.black);
-		g2d.drawLine(0, 0, size.width, size.height);
+//		g2d.setColor(Color.black);
+//		g2d.drawLine(0, 0, size.width, size.height);
 		
-		g2d.setColor(Color.BLACK);
-		g2d.fillRect(250, 150, 250, 100);
+//		g2d.setColor(Color.BLACK);
+//		g2d.fillRect(250, 150, 250, 100);
+		
+		g2d.setColor(Color.yellow);
+		g2d.fillRect(150, 0, 500, 200);
+		ca.leftupx = 150;
+		ca.leftupy = 0;
+		ca.rightdownx = 650;
+		ca.rightdowny = 200;
+		
+		g2d.setColor(Color.blue);
+		g2d.fillRect(150, 250, 500, 200);
+		fa.leftupx = 150;
+		fa.leftupy = 250;
+		fa.rightdownx = 650;
+		fa.rightdowny = 450;
 		
 		g2d.setColor(Color.RED);
 		g2d.fillOval(80, 50, 5, 5);
@@ -48,4 +65,5 @@ public class MapCanvas extends JPanel{
 		g2d.fillOval(700, 370, 5, 5);
 		g2d.drawString("Destination", 705, 375);
 	}
+	
 }
