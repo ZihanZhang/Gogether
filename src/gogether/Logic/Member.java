@@ -4,12 +4,13 @@ public class Member {
 	public int oldx, oldy, curx, cury, nextx, nexty, pbestx, pbesty, gbestx, gbesty, newx, newy;
 	public double w, c1, c2;
 	public FastArea fa = new FastArea();
+	public ComfortArea ca = new ComfortArea();
 	
 	public void setNewLocation() {
 		double r1 = Math.random();
 		double r2 = Math.random();
 		newx = (int) (w * nextx + r1 * c1 * (pbestx - curx) + r2 * c2 * (gbestx - curx));
-		newy = (int) (w * nextx + r1 * c1 * (pbesty - cury) + r2 * c2 * (gbesty - cury));	
+		newy = (int) (w * nexty + r1 * c1 * (pbesty - cury) + r2 * c2 * (gbesty - cury));	
 	}
 	
 	public void moveToNewLocation() {
@@ -19,12 +20,68 @@ public class Member {
 		cury = newy;
 	}
 	
-	public void setPbestx() {
+	//Fast Particle Best
+	public void setPbestxFast() {
+		
+		if (curx < 800 && curx > 600 && cury < 470 && cury > 270) {
+			pbestx = 700;
+		}
+		
 		int total = 0;
 		int num = 0;
 		for (int i = -50; i <= 50; i++) {
 			for (int j = -50; j <= 50; j++) {
 				if (fa.isInFastArea(curx + i, cury + j)) {
+					total += i;
+					num++;
+				}
+			}
+		}
+
+		if (num != 0 && total >= 0) {
+			pbestx = curx + total / num;
+		}
+		else {
+			pbestx = curx;
+		}
+	}
+	
+	public void setPbestyFast() {
+		
+		if (curx < 800 && curx > 600 && cury < 470 && cury > 270) {
+			pbesty = 370;
+		}
+		
+		int total = 0;
+		int num = 0;
+		for (int i = -50; i <= 50; i++) {
+			for (int j = -50; j <= 50; j++) {
+				if (fa.isInFastArea(curx + i, cury + j)) {
+					total += j;
+					num++;
+				}
+			}
+		}
+		if (num != 0 && total >= 0) {
+			pbesty = cury + total / num;
+		}
+		else {
+			pbesty = cury;
+		}
+	}
+	
+	//Comfort Particle Best
+	public void setPbestxCom() {
+		
+		if (curx < 800 && curx > 600 && cury < 470 && cury > 270) {
+			pbestx = 700;
+		}
+		
+		int total = 0;
+		int num = 0;
+		for (int i = -50; i <= 50; i++) {
+			for (int j = -50; j <= 50; j++) {
+				if (ca.isInComArea(curx + i, cury + j)) {
 					total += i;
 					num++;
 				}
@@ -38,12 +95,17 @@ public class Member {
 		}
 	}
 	
-	public void setPbesty() {
+	public void setPbestyCom() {
+		
+		if (curx < 800 && curx > 600 && cury < 470 && cury > 270) {
+			pbesty = 370;
+		}
+		
 		int total = 0;
 		int num = 0;
 		for (int i = -50; i <= 50; i++) {
 			for (int j = -50; j <= 50; j++) {
-				if (fa.isInFastArea(curx + i, cury + j)) {
+				if (ca.isInComArea(curx + i, cury + j)) {
 					total += j;
 					num++;
 				}
