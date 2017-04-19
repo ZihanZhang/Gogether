@@ -5,6 +5,7 @@ public class Member {
 	public double w, c1, c2;
 	public FastArea fa = new FastArea();
 	public ComfortArea ca = new ComfortArea();
+	public NoPassArea npa = new NoPassArea();
 	
 	public void setNewLocation() {
 		double r1 = Math.random();
@@ -38,7 +39,7 @@ public class Member {
 			}
 		}
 
-		if (num != 0 && total >= 0) {
+		if (num != 0 && total > 0) {
 			pbestx = curx + total / num;
 		}
 		else {
@@ -62,7 +63,7 @@ public class Member {
 				}
 			}
 		}
-		if (num != 0 && total >= 0) {
+		if (num != 0) {
 			pbesty = cury + total / num;
 		}
 		else {
@@ -87,7 +88,7 @@ public class Member {
 				}
 			}
 		}
-		if (num != 0) {
+		if (num != 0 && total > 0) {
 			pbestx = curx + total / num;
 		}
 		else {
@@ -130,6 +131,58 @@ public class Member {
 	public void setNextLocation() {
 		nextx = curx + (curx - oldx);
 		nexty = cury + (cury - oldy);
+	}
+	
+	public void avoidNoPassArea() {
+		int nearSide;
+		if (npa.isInNoPassArea(newx, newy)) {
+//			System.out.println(newx + " " + newy);
+			nearSide = npa.nearSide(newx, newy);
+//			System.out.println(nearSide);
+			if (nearSide == 1) {
+				newy = npa.leftupy;
+			}
+			if (nearSide == 2) {
+				newx = npa.rightdownx;
+			}
+			if (nearSide == 3) {
+				newy = npa.rightdowny;
+			}
+			if (nearSide == 4) {
+				newx = npa.leftupx;
+			}
+//			System.out.println(newx + " " + newy);
+		}
+//			System.out.println(newx + " " + newy);
+//			int midx = 0, midy = 0;
+//			for (int i = -50; i <= 50; i++) {
+//				for (int j = -50; j <= 50; j++) {
+//					if (npa.isInNoPassArea(newx + i, newy + j)) {
+//						midx += i;
+//						midy += j;
+//					}
+//				}
+//			}
+//			
+//			if (Math.abs(midx) >= Math.abs(midy)) {
+//				if (midx > 0) {
+//					newx = npa.leftupx;
+//				}
+//				if (midx < 0) {
+//					newx = npa.rightdownx;
+//				}
+//			}
+//			
+//			if (Math.abs(midx) < Math.abs(midy)) {
+//				if (midy > 0) {
+//					newy = npa.rightdowny;
+//				}
+//				if (midy < 0) {
+//					newy = npa.leftupy;
+//				}
+//			}
+//			System.out.println(newx + " " + newy);
+//		}
 	}
 	
 	
