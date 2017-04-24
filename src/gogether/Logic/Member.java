@@ -1,12 +1,13 @@
 package gogether.Logic;
 
+import java.util.ArrayList;
+
 public class Member {
 	public int oldx, oldy, curx, cury, nextx, nexty, pbestx, pbesty, gbestx, gbesty, newx, newy;
 	public double w, c1, c2;
-	public FastArea fa = new FastArea();
-	public ComfortArea ca = new ComfortArea();
-	public NoPassArea npa1 = new NoPassArea();
-	public NoPassArea npa2 = new NoPassArea();
+	public ArrayList<FastArea> fas = new ArrayList<FastArea>();
+	public ArrayList<ComfortArea> cas = new ArrayList<ComfortArea>();
+	public ArrayList<NoPassArea> npas = new ArrayList<NoPassArea>();
 	
 	public void setNewLocation() {
 		double r1 = Math.random();
@@ -33,9 +34,11 @@ public class Member {
 		int num = 0;
 		for (int i = -50; i <= 50; i++) {
 			for (int j = -50; j <= 50; j++) {
-				if (fa.isInFastArea(curx + i, cury + j)) {
-					total += i;
-					num++;
+				for (FastArea fa: fas) {
+					if (fa.isInFastArea(curx + i, cury + j)) {
+						total += i;
+						num++;
+					}
 				}
 			}
 		}
@@ -53,14 +56,16 @@ public class Member {
 		if (curx < 800 && curx > 600 && cury < 470 && cury > 270) {
 			pbesty = 370;
 		}
-		
+
 		int total = 0;
 		int num = 0;
 		for (int i = -50; i <= 50; i++) {
 			for (int j = -50; j <= 50; j++) {
-				if (fa.isInFastArea(curx + i, cury + j)) {
-					total += j;
-					num++;
+				for (FastArea fa: fas) {
+					if (fa.isInFastArea(curx + i, cury + j)) {
+						total += j;
+						num++;
+					}
 				}
 			}
 		}
@@ -83,9 +88,11 @@ public class Member {
 		int num = 0;
 		for (int i = -50; i <= 50; i++) {
 			for (int j = -50; j <= 50; j++) {
-				if (ca.isInComArea(curx + i, cury + j)) {
-					total += i;
-					num++;
+				for (ComfortArea ca: cas) {
+					if (ca.isInComArea(curx + i, cury + j)) {
+						total += i;
+						num++;
+					}
 				}
 			}
 		}
@@ -107,9 +114,11 @@ public class Member {
 		int num = 0;
 		for (int i = -50; i <= 50; i++) {
 			for (int j = -50; j <= 50; j++) {
-				if (ca.isInComArea(curx + i, cury + j)) {
-					total += j;
-					num++;
+				for (ComfortArea ca: cas) {
+					if (ca.isInComArea(curx + i, cury + j)) {
+						total += j;
+						num++;
+					}
 				}
 			}
 		}
@@ -135,43 +144,26 @@ public class Member {
 	}
 	
 	public void avoidNoPassArea() {
-		int nearSide;
-		if (npa1.isInNoPassArea(newx, newy)) {
-//			System.out.println(newx + " " + newy);
-			nearSide = npa1.nearSide(newx, newy);
-//			System.out.println(nearSide);
-			if (nearSide == 1) {
-				newy = npa1.leftupy;
-			}
-			if (nearSide == 2) {
-				newx = npa1.rightdownx;
-			}
-			if (nearSide == 3) {
-				newy = npa1.rightdowny;
-			}
-			if (nearSide == 4) {
-				newx = npa1.leftupx;
-			}
-		}
-		
-		if (npa2.isInNoPassArea(newx, newy)) {
-//			System.out.println(newx + " " + newy);
-			nearSide = npa2.nearSide(newx, newy);
-//			System.out.println(nearSide);
-			if (nearSide == 1) {
-				newy = npa2.leftupy;
-			}
-			if (nearSide == 2) {
-				newx = npa2.rightdownx;
-			}
-			if (nearSide == 3) {
-				newy = npa2.rightdowny;
-			}
-			if (nearSide == 4) {
-				newx = npa2.leftupx;
+		for(NoPassArea npa:npas) {
+			int nearSide;
+			if (npa.isInNoPassArea(newx, newy)) {
+//				System.out.println(newx + " " + newy);
+				nearSide = npa.nearSide(newx, newy);
+//				System.out.println(nearSide);
+				if (nearSide == 1) {
+					newy = npa.leftupy;
+				}
+				if (nearSide == 2) {
+					newx = npa.rightdownx;
+				}
+				if (nearSide == 3) {
+					newy = npa.rightdowny;
+				}
+				if (nearSide == 4) {
+					newx = npa.leftupx;
+				}
 			}
 		}
 	}
-	
 	
 }

@@ -24,27 +24,23 @@ public class RouteDrawer extends TimerTask{
 		this.mapCanvas = mapCanvas;
 		m1.curx = 80;
 		m1.cury = 50;
-		m1.fa = mapCanvas.fa;
-		m1.npa1 = mapCanvas.npa1;
-		m1.npa2 = mapCanvas.npa2;
+		m1.fas = mapCanvas.fas;
+		m1.npas = mapCanvas.npas;
 		
 		m2.curx = 80;
 		m2.cury = 50;
-		m2.ca = mapCanvas.ca;
-		m2.npa1 = mapCanvas.npa1;
-		m2.npa2 = mapCanvas.npa2;
+		m2.cas = mapCanvas.cas;
+		m2.npas = mapCanvas.npas;
 		
 		m3.curx = 80;
 		m3.cury = 50;
-		m3.ca = mapCanvas.ca;
-		m3.npa1 = mapCanvas.npa1;
-		m3.npa2 = mapCanvas.npa2;
+		m3.cas = mapCanvas.cas;
+		m3.npas = mapCanvas.npas;
 		
 		m4.curx = 80;
 		m4.cury = 50;
-		m4.fa = mapCanvas.fa;
-		m4.npa1 = mapCanvas.npa1;
-		m4.npa2 = mapCanvas.npa2;
+		m4.fas = mapCanvas.fas;
+		m4.npas = mapCanvas.npas;
 	}
 	
 	public void draw() {
