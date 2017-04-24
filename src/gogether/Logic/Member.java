@@ -5,7 +5,8 @@ public class Member {
 	public double w, c1, c2;
 	public FastArea fa = new FastArea();
 	public ComfortArea ca = new ComfortArea();
-	public NoPassArea npa = new NoPassArea();
+	public NoPassArea npa1 = new NoPassArea();
+	public NoPassArea npa2 = new NoPassArea();
 	
 	public void setNewLocation() {
 		double r1 = Math.random();
@@ -135,54 +136,41 @@ public class Member {
 	
 	public void avoidNoPassArea() {
 		int nearSide;
-		if (npa.isInNoPassArea(newx, newy)) {
+		if (npa1.isInNoPassArea(newx, newy)) {
 //			System.out.println(newx + " " + newy);
-			nearSide = npa.nearSide(newx, newy);
+			nearSide = npa1.nearSide(newx, newy);
 //			System.out.println(nearSide);
 			if (nearSide == 1) {
-				newy = npa.leftupy;
+				newy = npa1.leftupy;
 			}
 			if (nearSide == 2) {
-				newx = npa.rightdownx;
+				newx = npa1.rightdownx;
 			}
 			if (nearSide == 3) {
-				newy = npa.rightdowny;
+				newy = npa1.rightdowny;
 			}
 			if (nearSide == 4) {
-				newx = npa.leftupx;
+				newx = npa1.leftupx;
 			}
-//			System.out.println(newx + " " + newy);
 		}
+		
+		if (npa2.isInNoPassArea(newx, newy)) {
 //			System.out.println(newx + " " + newy);
-//			int midx = 0, midy = 0;
-//			for (int i = -50; i <= 50; i++) {
-//				for (int j = -50; j <= 50; j++) {
-//					if (npa.isInNoPassArea(newx + i, newy + j)) {
-//						midx += i;
-//						midy += j;
-//					}
-//				}
-//			}
-//			
-//			if (Math.abs(midx) >= Math.abs(midy)) {
-//				if (midx > 0) {
-//					newx = npa.leftupx;
-//				}
-//				if (midx < 0) {
-//					newx = npa.rightdownx;
-//				}
-//			}
-//			
-//			if (Math.abs(midx) < Math.abs(midy)) {
-//				if (midy > 0) {
-//					newy = npa.rightdowny;
-//				}
-//				if (midy < 0) {
-//					newy = npa.leftupy;
-//				}
-//			}
-//			System.out.println(newx + " " + newy);
-//		}
+			nearSide = npa2.nearSide(newx, newy);
+//			System.out.println(nearSide);
+			if (nearSide == 1) {
+				newy = npa2.leftupy;
+			}
+			if (nearSide == 2) {
+				newx = npa2.rightdownx;
+			}
+			if (nearSide == 3) {
+				newy = npa2.rightdowny;
+			}
+			if (nearSide == 4) {
+				newx = npa2.leftupx;
+			}
+		}
 	}
 	
 	

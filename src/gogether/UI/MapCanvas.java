@@ -6,10 +6,12 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,7 +27,9 @@ public class MapCanvas extends JPanel{
 
 	FastArea fa = new FastArea();
 	ComfortArea ca = new ComfortArea();
-	NoPassArea npa = new NoPassArea();
+	NoPassArea npa1 = new NoPassArea();
+	NoPassArea npa2 = new NoPassArea();
+	Image image1;
 	
 	@Override
 	public void paint(Graphics g) {
@@ -35,8 +39,9 @@ public class MapCanvas extends JPanel{
 	private void drawCanvas(Graphics g) {
 		Graphics2D g2d=(Graphics2D) g;
 		Dimension size=getSize();
+		image1 = new ImageIcon("index.jpeg").getImage();
 		
-		g2d.setColor(Color.GREEN);
+		g2d.setColor(Color.white);
 		g2d.fillRect(0, 0,size.width, size.height);
 		
 //		g2d.setColor(Color.black);
@@ -58,11 +63,20 @@ public class MapCanvas extends JPanel{
 		fa.rightdowny = 450;
 		
 		g2d.setColor(Color.BLACK);
-		g2d.fillRect(250, 150, 250, 150);
-		npa.leftupx = 250;
-		npa.leftupy = 150;
-		npa.rightdownx = 500;
-		npa.rightdowny = 300;
+		g2d.fillRect(250, 50, 250, 150);
+		npa1.leftupx = 250;
+		npa1.leftupy = 50;
+		npa1.rightdownx = 500;
+		npa1.rightdowny = 200;
+		g.drawImage(image1, 250, 50, null);
+		
+		g2d.setColor(Color.BLACK);
+		g2d.fillRect(250, 300, 250, 150);
+		npa2.leftupx = 250;
+		npa2.leftupy = 300;
+		npa2.rightdownx = 500;
+		npa2.rightdowny = 450;
+		g.drawImage(image1, 250, 300, null);
 		
 		g2d.setColor(Color.RED);
 		g2d.fillOval(80, 50, 5, 5);
