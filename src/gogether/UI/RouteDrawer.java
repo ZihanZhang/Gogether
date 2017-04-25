@@ -49,8 +49,8 @@ public class RouteDrawer extends TimerTask{
 		Graphics2D g2d=(Graphics2D) mapCanvas.getGraphics();
 		g2d.setColor(Color.red);
 		m.w = 1;
-		m.c1 = 1;
-		m.c2 = 1;
+		m.c1 = 0.5;
+		m.c2 = 0.5;
 		m.gbestx = destx;
 		m.gbesty = desty;
 		m.oldx = m.curx;
