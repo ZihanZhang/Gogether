@@ -27,11 +27,13 @@ public class GogetherUI {
 	
 	JButton startButton = null;
 	
+	JButton addMember = null;
+	
 	private Timer timer = new Timer();
 	
 	public GogetherUI() {
 		mainFrame = new JFrame();
-		mainFrame.setSize(800, 500);
+		mainFrame.setSize(1200, 700);
 		mainFrame.setTitle("Gogether");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -49,14 +51,33 @@ public class GogetherUI {
 	private JPanel buttonPanel() {
 		buttonPanel = new JPanel();
 		startButton = new JButton("Start");
+		addMember = new JButton("Add Member");
 		DesignGridLayout pLayout = new DesignGridLayout(buttonPanel);
-		pLayout.row().center().add(startButton);
+		pLayout.row().center().add(startButton, addMember);
 		buttonPanel.setBackground(Color.gray);
+		
+		addMember.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFrame addWindow = new JFrame("Add Member");
+				AddMemberCanvas amc = new AddMemberCanvas();
+				addWindow.add(amc);
+				addWindow.setSize(400, 250);
+				addWindow.setVisible(true);
+			}
+			
+		});
 		
 		startButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				timer.schedule(new RouteDrawer(mainPanel), 0L,100L);			
+				for (int i = 0; i < 15; i++) {
+					timer.schedule(new RouteDrawer(mainPanel, 0), 0L, 100L);		
+				}		
+				for (int i = 0; i < 15; i++) {
+					timer.schedule(new RouteDrawer(mainPanel, 1), 0L, 100L);
+				}
 			}			
 		});
 		

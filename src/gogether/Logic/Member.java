@@ -4,10 +4,19 @@ import java.util.ArrayList;
 
 public class Member {
 	public int oldx, oldy, curx, cury, nextx, nexty, pbestx, pbesty, gbestx, gbesty, newx, newy;
+	public int destx, desty, depax, depay;
+	public int preference;
 	public double w, c1, c2;
 	public ArrayList<FastArea> fas = new ArrayList<FastArea>();
 	public ArrayList<ComfortArea> cas = new ArrayList<ComfortArea>();
 	public ArrayList<NoPassArea> npas = new ArrayList<NoPassArea>();
+	
+	public Member(int destx, int desty, int depax, int depay) {
+		this.depax = depax;
+		this.depay = depay;
+		this.destx = destx;
+		this.desty = desty;
+	}
 	
 	public void setNewLocation() {
 		double r1 = Math.random();
@@ -26,8 +35,8 @@ public class Member {
 	//Fast Particle Best
 	public void setPbestxFast() {
 		
-		if (curx < 800 && curx > 600 && cury < 470 && cury > 270) {
-			pbestx = 700;
+		if (curx < destx + 100 && curx > destx - 100 && cury < desty + 100 && cury > desty - 100) {
+			pbestx = destx;
 		}
 		
 		int total = 0;
@@ -53,8 +62,8 @@ public class Member {
 	
 	public void setPbestyFast() {
 		
-		if (curx < 800 && curx > 600 && cury < 470 && cury > 270) {
-			pbesty = 370;
+		if (curx < destx + 100 && curx > destx - 100 && cury < desty + 100 && cury > desty - 100) {
+			pbesty = desty;
 		}
 
 		int total = 0;
@@ -80,8 +89,8 @@ public class Member {
 	//Comfort Particle Best
 	public void setPbestxCom() {
 		
-		if (curx < 800 && curx > 600 && cury < 470 && cury > 270) {
-			pbestx = 700;
+		if (curx < destx + 100 && curx > destx - 100 && cury < desty + 100 && cury > desty - 100) {
+			pbestx = destx;
 		}
 		
 		int total = 0;
@@ -106,8 +115,8 @@ public class Member {
 	
 	public void setPbestyCom() {
 		
-		if (curx < 800 && curx > 600 && cury < 470 && cury > 270) {
-			pbesty = 370;
+		if (curx < destx + 100 && curx > destx - 100 && cury < desty + 100 && cury > desty - 100) {
+			pbesty = desty;
 		}
 		
 		int total = 0;
@@ -131,11 +140,11 @@ public class Member {
 	}
 	
 	public void setGbestx() {
-		gbestx = curx + (700 - curx) / 10;
+		gbestx = curx + (destx - curx) / 10;
 	}
 	
 	public void setGbesty() {
-		gbesty = cury + (370 - cury) / 10;
+		gbesty = cury + (desty - cury) / 10;
 	}
 	
 	public void setNextLocation() {

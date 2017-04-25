@@ -36,6 +36,8 @@ public class MapCanvas extends JPanel{
 	NoPassArea npa2 = new NoPassArea();
 	ArrayList<NoPassArea> npas = new ArrayList<NoPassArea>();
 	Image image1;
+	int destx = 1200, desty = 600;
+	int depax = 80, depay = 50;
 	
 	@Override
 	public void paint(Graphics g) {
@@ -64,11 +66,11 @@ public class MapCanvas extends JPanel{
 		
 		g2d.setColor(Color.blue);
 		g2d.fillRect(400, 0, 250, 250);
-		ca2.leftupx = 400;
-		ca2.leftupy = 0;
-		ca2.rightdownx = 650;
-		ca2.rightdowny = 250;
-		cas.add(ca2);
+		fa2.leftupx = 400;
+		fa2.leftupy = 0;
+		fa2.rightdownx = 650;
+		fa2.rightdowny = 250;
+		fas.add(fa2);
 		
 		g2d.setColor(Color.blue);
 		g2d.fillRect(150, 250, 250, 200);
@@ -80,11 +82,11 @@ public class MapCanvas extends JPanel{
 		
 		g2d.setColor(Color.yellow);
 		g2d.fillRect(400, 250, 250, 200);
-		fa2.leftupx = 400;
-		fa2.leftupy = 250;
-		fa2.rightdownx = 650;
-		fa2.rightdowny = 450;
-		fas.add(fa2);
+		ca2.leftupx = 400;
+		ca2.leftupy = 250;
+		ca2.rightdownx = 650;
+		ca2.rightdowny = 450;
+		cas.add(ca2);
 		
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(250, 50, 250, 150);
@@ -106,11 +108,15 @@ public class MapCanvas extends JPanel{
 		
 		g2d.setColor(Color.RED);
 		g2d.fillOval(80, 50, 5, 5);
+		depax = 80;
+		depay = 50;
 		g2d.drawString("Departure", 85, 50);
 		
 		g2d.setColor(Color.RED);
-		g2d.fillOval(700, 370, 5, 5);
-		g2d.drawString("Destination", 705, 375);
+		g2d.fillOval(1100, 600, 5, 5);
+		destx = 1100;
+		desty = 600;
+		g2d.drawString("Destination", 1105, 605);
 	}
 	
 }
