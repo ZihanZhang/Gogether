@@ -12,9 +12,12 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import gogether.Logic.Member;
 import net.java.dev.designgridlayout.DesignGridLayout;
 
 public class GogetherUI {
@@ -23,17 +26,23 @@ public class GogetherUI {
 	
 	MapCanvas mainPanel = null;
 	
+	JPanel memberPanel = null;
+	
+	JList memberList = null;
+	
 	JPanel buttonPanel = null;
 	
 	JButton startButton = null;
 	
 	JButton addMember = null;
 	
+	Member[] mbs = new Member[50];
+	
 	private Timer timer = new Timer();
 	
 	public GogetherUI() {
 		mainFrame = new JFrame();
-		mainFrame.setSize(1200, 700);
+		mainFrame.setSize(1270, 700);
 		mainFrame.setTitle("Gogether");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -44,6 +53,14 @@ public class GogetherUI {
 		
 		buttonPanel = buttonPanel();
 		mainFrame.add(buttonPanel, BorderLayout.NORTH);
+		
+		Member m1 = new Member(1100, 600, 80, 50);
+		Member m2 = new Member(1100, 600, 80, 50);
+		mbs[0] = m1;
+		mbs[1] = m2;
+		memberList = new JList(mbs);
+		JScrollPane listScroller = new JScrollPane(memberList);
+		mainFrame.add(listScroller,  BorderLayout.WEST);
 		
 		mainFrame.setVisible(true);
 	}

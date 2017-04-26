@@ -175,4 +175,8 @@ public class Member {
 		}
 	}
 	
+	public String toString() {
+		return "Location: " + curx + " " + cury;
+	}
+	
 }

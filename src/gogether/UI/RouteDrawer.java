@@ -4,9 +4,11 @@ import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Robot;
 import java.util.TimerTask;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import gogether.Logic.Member;
@@ -14,6 +16,8 @@ import gogether.Logic.NoPassArea;
 
 public class RouteDrawer extends TimerTask{
 	int destx, desty, depax, depay;
+	
+	Image mImage = new ImageIcon("member.png").getImage();
 	
 	Member m;
 	
