@@ -43,7 +43,6 @@ public class GogetherUI {
 	
 	GlassPane gp = null;
 				
-	private Timer timer = new Timer();
 	
 	public GogetherUI() {
 		mainFrame = new JFrame();
@@ -51,21 +50,23 @@ public class GogetherUI {
 		mainFrame.setTitle("Gogether");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		mainFrame.setLayout(new BorderLayout());
-		
-		mainPanel = new MapCanvas();
-		gp = new GlassPane();
-		mainFrame.setGlassPane(gp);
-		gp.setVisible(true);
-		mainFrame.add(mainPanel, BorderLayout.CENTER);
+		Container contentPane = mainFrame.getContentPane();		
+		contentPane.setLayout(new BorderLayout());
 		
 		buttonPanel = buttonPanel();
-		mainFrame.add(buttonPanel, BorderLayout.NORTH);
+		contentPane.add(buttonPanel, BorderLayout.NORTH);
 		
 		mlc = new MemberListCanvas();
 		JScrollPane listScroller = new JScrollPane(mlc,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		mainFrame.add(listScroller,  BorderLayout.WEST);
+		contentPane.add(listScroller,  BorderLayout.WEST);
+		
+		mainPanel = new MapCanvas();
+		gp = new GlassPane(mainPanel, mainFrame, startButton, mlc);
+		mainFrame.setGlassPane(gp);
+		gp.setVisible(true);
+		contentPane.add(mainPanel, BorderLayout.CENTER);
+			
 		
 		mainFrame.setVisible(true);
 	}
@@ -89,18 +90,6 @@ public class GogetherUI {
 				addWindow.setVisible(true);
 			}
 			
-		});
-		
-		startButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < 15; i++) {
-					timer.schedule(new RouteDrawer(mainPanel, 0, mlc), 0L, 100L);		
-				}		
-				for (int i = 0; i < 15; i++) {
-					timer.schedule(new RouteDrawer(mainPanel, 1, mlc), 0L, 100L);
-				}
-			}			
 		});
 		
 		return buttonPanel;
