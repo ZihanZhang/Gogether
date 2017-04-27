@@ -2,6 +2,7 @@ package gogether.UI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -14,10 +15,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import gogether.Logic.Member;
+import gogether.Logic.MemberManager;
 import net.java.dev.designgridlayout.DesignGridLayout;
 
 public class GogetherUI {
@@ -28,16 +31,14 @@ public class GogetherUI {
 	
 	JPanel memberPanel = null;
 	
-	JList memberList = null;
-	
 	JPanel buttonPanel = null;
 	
 	JButton startButton = null;
 	
 	JButton addMember = null;
 	
-	Member[] mbs = new Member[50];
-	
+	MemberListCanvas mlc = null;
+				
 	private Timer timer = new Timer();
 	
 	public GogetherUI() {
@@ -54,12 +55,9 @@ public class GogetherUI {
 		buttonPanel = buttonPanel();
 		mainFrame.add(buttonPanel, BorderLayout.NORTH);
 		
-		Member m1 = new Member(1100, 600, 80, 50);
-		Member m2 = new Member(1100, 600, 80, 50);
-		mbs[0] = m1;
-		mbs[1] = m2;
-		memberList = new JList(mbs);
-		JScrollPane listScroller = new JScrollPane(memberList);
+		mlc = new MemberListCanvas();
+		JScrollPane listScroller = new JScrollPane(mlc,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		mainFrame.add(listScroller,  BorderLayout.WEST);
 		
 		mainFrame.setVisible(true);
@@ -90,10 +88,10 @@ public class GogetherUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < 15; i++) {
-					timer.schedule(new RouteDrawer(mainPanel, 0), 0L, 100L);		
+					timer.schedule(new RouteDrawer(mainPanel, 0, mlc), 0L, 100L);		
 				}		
 				for (int i = 0; i < 15; i++) {
-					timer.schedule(new RouteDrawer(mainPanel, 1), 0L, 100L);
+					timer.schedule(new RouteDrawer(mainPanel, 1, mlc), 0L, 100L);
 				}
 			}			
 		});

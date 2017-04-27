@@ -9,9 +9,12 @@ import java.awt.Robot;
 import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import gogether.Logic.Member;
+import gogether.Logic.MemberManager;
 import gogether.Logic.NoPassArea;
 
 public class RouteDrawer extends TimerTask{
@@ -23,12 +26,19 @@ public class RouteDrawer extends TimerTask{
 	
 	MapCanvas mapCanvas;
 	
-	public RouteDrawer(MapCanvas mapCanvas, int preference) {
+	MemberListCanvas mlc;
+	
+	JLabel jl;
+	
+	int num;
+	
+	public RouteDrawer(MapCanvas mapCanvas, int preference, MemberListCanvas mlc) {
 		this.mapCanvas = mapCanvas;
 		this.destx = mapCanvas.destx;
 		this.desty = mapCanvas.desty;
 		this.depax = mapCanvas.depax;
 		this.depay = mapCanvas.depay;
+		this.mlc = mlc;
 		m = new Member(destx, desty, depax, depay);
 		m.preference = preference;
 		if (preference == 0) {
@@ -44,6 +54,14 @@ public class RouteDrawer extends TimerTask{
 			m.cas = mapCanvas.cas;
 			m.npas = mapCanvas.npas;
 		}
+		
+		jl = new JLabel(m.toString());
+		jl.setName("Member" + mlc.num);
+		num = mlc.num;
+		mlc.num++;
+		mlc.add(jl);
+		mlc.putComponentByName("Member" + num, jl);
+		mlc.validate();
 	}
 	
 	public void draw() {
@@ -79,6 +97,9 @@ public class RouteDrawer extends TimerTask{
 		m.moveToNewLocation();
 		
 		mapCanvas.validate();
+		
+		JLabel newJLabel = (JLabel) mlc.getComponentByName("Member" + num);
+		newJLabel.setText(m.toString());
 	}
 
 	@Override
