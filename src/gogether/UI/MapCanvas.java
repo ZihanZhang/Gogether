@@ -2,13 +2,17 @@ package gogether.UI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -24,7 +28,7 @@ import gogether.Logic.FastArea;
 import gogether.Logic.NoPassArea;
 import net.java.dev.designgridlayout.DesignGridLayout;
 
-public class MapCanvas extends JPanel{
+public class MapCanvas extends JPanel {
 
 	ArrayList<FastArea> fas = new ArrayList<FastArea>();
 	ArrayList<ComfortArea> cas = new ArrayList<ComfortArea>();
@@ -86,6 +90,41 @@ public class MapCanvas extends JPanel{
 		destx = 1100;
 		desty = 600;
 		g2d.drawString("Destination", 1105, 605);
+		
+		this.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+//				System.out.println("Entered");
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 	
 	public void setNoPassArea(int x, int y, int width, int height, Image img, Graphics g) {

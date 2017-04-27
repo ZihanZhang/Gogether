@@ -20,7 +20,7 @@ public class MemberListCanvas extends JPanel{
 	
 	public MemberListCanvas() {
 		this.setLayout(gl);
-		this.add(new JLabel("Member     X   Y"));
+		this.add(new JLabel("Member     X     Y    "));
 	}
 	
 	public void putComponentByName(String name, Component c) {

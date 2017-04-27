@@ -2,9 +2,11 @@ package gogether.UI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
@@ -38,6 +40,8 @@ public class GogetherUI {
 	JButton addMember = null;
 	
 	MemberListCanvas mlc = null;
+	
+	GlassPane gp = null;
 				
 	private Timer timer = new Timer();
 	
@@ -50,6 +54,9 @@ public class GogetherUI {
 		mainFrame.setLayout(new BorderLayout());
 		
 		mainPanel = new MapCanvas();
+		gp = new GlassPane();
+		mainFrame.setGlassPane(gp);
+		gp.setVisible(true);
 		mainFrame.add(mainPanel, BorderLayout.CENTER);
 		
 		buttonPanel = buttonPanel();
