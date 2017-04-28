@@ -23,16 +23,19 @@ public class GlassPane extends JComponent implements MouseListener{
 	MapCanvas mc;
 	JFrame jf;
 	JButton startButton;
+	JButton addMemberButton;
 	Timer timer;
 	MemberListCanvas mlc;
+	AddMemberCanvas amc;
 	
 	int x, y;
 	
-	public GlassPane(MapCanvas mc, JFrame jf, JButton startButton, MemberListCanvas mlc) {
+	public GlassPane(MapCanvas mc, JFrame jf, JButton startButton, JButton addMemberButton, MemberListCanvas mlc) {
 		this.mc = mc;
 		this.jf = jf;
 		this.startButton = startButton;
 		this.mlc = mlc;
+		this.addMemberButton = addMemberButton;
 		this.addMouseListener(this);
 		timer = new Timer();
 	}
@@ -73,16 +76,24 @@ public class GlassPane extends JComponent implements MouseListener{
                 this,
                 glassPanePoint,
                 container);
-		// TODO Auto-generated method stub
 		Component component = SwingUtilities.getDeepestComponentAt(container, containerPoint.x, containerPoint.y);
 		if ((component != null) 
                 && (component.equals(startButton))) {
 			for (int i = 0; i < 15; i++) {
-				timer.schedule(new RouteDrawer(mc, 0, mlc), 0L, 100L);		
+				timer.schedule(new RouteDrawer(mc, 0, mlc), 0L, 100L);
 			}		
 			for (int i = 0; i < 15; i++) {
 				timer.schedule(new RouteDrawer(mc, 1, mlc), 0L, 100L);
 			}
+			timer.schedule(amc.rd, 0L, 100L);
+		}
+		else if ((component != null)
+				&& (component.equals(addMemberButton))) {
+			JFrame addWindow = new JFrame("Add Member");
+			amc = new AddMemberCanvas(mc, mlc);
+			addWindow.add(amc);
+			addWindow.setSize(400, 250);
+			addWindow.setVisible(true);
 		}
 		else {
 			Point mapCanvasPoint = SwingUtilities.convertPoint(this, glassPanePoint, mc);

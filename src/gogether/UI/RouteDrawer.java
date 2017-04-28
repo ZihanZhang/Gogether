@@ -91,6 +91,7 @@ public class RouteDrawer extends TimerTask{
 		
 		JLabel newJLabel = (JLabel) mlc.getComponentByName("Member" + num);
 		newJLabel.setText(m.toString());
+
 	}
 
 	@Override

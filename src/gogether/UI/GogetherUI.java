@@ -11,8 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import net.java.dev.designgridlayout.DesignGridLayout;
-
 public class GogetherUI {
 	
 	JFrame mainFrame = null;
@@ -50,7 +48,7 @@ public class GogetherUI {
 		contentPane.add(listScroller,  BorderLayout.WEST);
 		
 		mainPanel = new MapCanvas();
-		gp = new GlassPane(mainPanel, mainFrame, startButton, mlc);
+		gp = new GlassPane(mainPanel, mainFrame, startButton, addMember, mlc);
 		mainFrame.setGlassPane(gp);
 		gp.setVisible(true);
 		contentPane.add(mainPanel, BorderLayout.CENTER);
@@ -63,22 +61,9 @@ public class GogetherUI {
 		buttonPanel = new JPanel();
 		startButton = new JButton("Start");
 		addMember = new JButton("Add Member");
-		DesignGridLayout pLayout = new DesignGridLayout(buttonPanel);
-		pLayout.row().center().add(startButton, addMember);
+		buttonPanel.add(startButton);
+		buttonPanel.add(addMember);
 		buttonPanel.setBackground(Color.gray);
-		
-		addMember.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFrame addWindow = new JFrame("Add Member");
-				AddMemberCanvas amc = new AddMemberCanvas();
-				addWindow.add(amc);
-				addWindow.setSize(400, 250);
-				addWindow.setVisible(true);
-			}
-			
-		});
 		
 		return buttonPanel;
 	}

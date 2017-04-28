@@ -8,6 +8,7 @@ public class Member {
 	public int preference;
 	public double shortestdis;
 	public int dpbestxi, dpbestyi, apbestxi, apbestyi;
+	public String name = "Member";
 	public double w, c1, c2;
 	public ArrayList<FastArea> fas = new ArrayList<FastArea>();
 	public ArrayList<ComfortArea> cas = new ArrayList<ComfortArea>();
@@ -164,7 +165,7 @@ public class Member {
 	
 	
 	public String toString() {
-		return "Location: " + curx + " " + cury;
+		return name + " " + curx + " " + cury;
 	}
 	
 }
