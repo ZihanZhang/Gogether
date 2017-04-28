@@ -4,11 +4,9 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.HashMap;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import net.java.dev.designgridlayout.DesignGridLayout;
 
 public class MemberListCanvas extends JPanel{
 	

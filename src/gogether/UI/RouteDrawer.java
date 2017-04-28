@@ -1,21 +1,14 @@
 package gogether.UI;
 
-import java.awt.AWTException;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Robot;
 import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import gogether.Logic.Member;
-import gogether.Logic.MemberManager;
-import gogether.Logic.NoPassArea;
 
 public class RouteDrawer extends TimerTask{
 	int destx, desty, depax, depay;
@@ -78,12 +71,10 @@ public class RouteDrawer extends TimerTask{
 		m.oldx = m.curx;
 		m.oldy = m.cury;
 		if (m.preference == 0) {
-			m.setPbestxFast();
-			m.setPbestyFast();
+			m.setPbestFast();
 		}
 		if (m.preference == 1) {
-			m.setPbestxCom();
-			m.setPbestyCom();
+			m.setPbestCom();
 		}
 		m.setGbestx();
 		m.setGbesty();
