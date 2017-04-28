@@ -90,7 +90,7 @@ public class GlassPane extends JComponent implements MouseListener{
 		else if ((component != null)
 				&& (component.equals(addMemberButton))) {
 			JFrame addWindow = new JFrame("Add Member");
-			amc = new AddMemberCanvas(mc, mlc);
+			amc = new AddMemberCanvas(mc, mlc, addWindow);
 			addWindow.add(amc);
 			addWindow.setSize(400, 250);
 			addWindow.setVisible(true);

@@ -13,7 +13,7 @@ public class AddMemberCanvas extends JPanel{
 	MemberListCanvas mlc;
 	RouteDrawer rd;
 	
-	public AddMemberCanvas(MapCanvas mapCanvas, MemberListCanvas mlc) {
+	public AddMemberCanvas(MapCanvas mapCanvas, MemberListCanvas mlc, JFrame addWindow) {
 		preference.addChangeListener(null);
 		preference.setMajorTickSpacing(10);
 		preference.setPaintTicks(true);
@@ -48,6 +48,8 @@ public class AddMemberCanvas extends JPanel{
 				String name = jf.getText();
 				rd = new RouteDrawer(mapCanvas, pre, mlc);
 				rd.m.name = name;
+				addWindow.setVisible(false);
+				addWindow.dispose();
 			}
 		});
 		this.add(submit, BorderLayout.SOUTH);
