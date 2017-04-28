@@ -32,6 +32,11 @@ public class Member {
 		oldy = cury;
 		curx = newx;
 		cury = newy;
+		
+		if (distance(curx, cury, destx, desty) - distance(oldx, oldy, destx, desty) > shortestdis) {
+			dpbestxi = curx - oldx;
+			dpbestyi = cury - oldy;
+		}
 	}
 	
 	//Fast Particle Best
@@ -58,21 +63,21 @@ public class Member {
 		}
 
 		if (num != 0 && totali > 0) {
-			pbestx = curx + totali / num;
+			apbestxi = totali / num;
 		}
 		else {
-			pbestx = curx;
+			apbestxi = 0;
 		}
 		
 		if (num != 0) {
-			pbesty = cury + totalj / num;
+			apbestyi = totalj / num;
 		}
 		else {
-			pbesty = cury;
+			apbestyi = 0;
 		}
 		
-//		pbestx = curx + (apbestxi + dpbestxi) / 2;
-//		pbesty = cury + (apbestyi + dpbestyi) / 2;
+		pbestx = curx + (apbestxi + dpbestxi) / 2;
+		pbesty = cury + (apbestyi + dpbestyi) / 2;
 		
 	}
 	
@@ -99,18 +104,21 @@ public class Member {
 			}
 		}
 		if (num != 0 && totali > 0) {
-			pbestx = curx + totali / num;
+			apbestxi = totali / num;
 		}
 		else {
-			pbestx = curx;
+			apbestxi = 0;
 		}
 		
 		if (num != 0) {
-			pbesty = cury + totalj / num;
+			apbestyi = totalj / num;
 		}
 		else {
-			pbesty = cury;
+			apbestyi = 0;
 		}
+		
+		pbestx = curx + (apbestxi + dpbestxi) / 2;
+		pbesty = cury + (apbestyi + dpbestyi) / 2;
 	}
 	
 	
